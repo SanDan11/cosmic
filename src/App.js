@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import StartMenu from "./components/Start";
+import RenderArea from "./RenderArea";
 
 function App() {
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [currentArea, setCurrentArea] = useState("forest");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!isGameStarted ? (
+        <StartMenu setIsGameStarted={setIsGameStarted} />
+      ) : (
+        <RenderArea currentArea={currentArea} setCurrentArea={setCurrentArea} />
+      )}
     </div>
   );
 }
